@@ -1,0 +1,328 @@
+[
+    {
+        "id": "c68224905b690415",
+        "type": "tab",
+        "label": "Dashboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7875a6c906415a48",
+        "type": "ui_gauge",
+        "z": "c68224905b690415",
+        "name": "",
+        "group": "669bbae6daecedb5",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "X Velocity",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 740,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f331ed26d439a210",
+        "type": "inject",
+        "z": "c68224905b690415",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "$random()*100\t\t",
+        "payloadType": "jsonata",
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "7875a6c906415a48",
+                "e210b451eda7d56b"
+            ]
+        ]
+    },
+    {
+        "id": "c356c1f283621858",
+        "type": "ui_chart",
+        "z": "c68224905b690415",
+        "name": "",
+        "group": "3b13d072c2dc0bdc",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "label": "X Pos",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 770,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a0629a58c8fdd99c",
+        "type": "function",
+        "z": "c68224905b690415",
+        "name": "",
+        "func": "msg.payload = [];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 440,
+        "wires": [
+            [
+                "c356c1f283621858",
+                "64cfd63fcc5fe195"
+            ]
+        ]
+    },
+    {
+        "id": "eb0e8561cee1d266",
+        "type": "ui_button",
+        "z": "c68224905b690415",
+        "name": "",
+        "group": "3b13d072c2dc0bdc",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Clear",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 310,
+        "y": 440,
+        "wires": [
+            [
+                "a0629a58c8fdd99c"
+            ]
+        ]
+    },
+    {
+        "id": "64cfd63fcc5fe195",
+        "type": "ui_chart",
+        "z": "c68224905b690415",
+        "name": "",
+        "group": "3b13d072c2dc0bdc",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "label": "Y Pos",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d60d5e880a1b74c",
+        "type": "inject",
+        "z": "c68224905b690415",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "$random()*100\t\t",
+        "payloadType": "jsonata",
+        "x": 350,
+        "y": 580,
+        "wires": [
+            [
+                "8cc174c206a099ee",
+                "9d1eaf5c605f8036"
+            ]
+        ]
+    },
+    {
+        "id": "8cc174c206a099ee",
+        "type": "ui_gauge",
+        "z": "c68224905b690415",
+        "name": "",
+        "group": "669bbae6daecedb5",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Y Velocity",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 740,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "e210b451eda7d56b",
+        "type": "smooth",
+        "z": "c68224905b690415",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "10",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 620,
+        "y": 400,
+        "wires": [
+            [
+                "c356c1f283621858"
+            ]
+        ]
+    },
+    {
+        "id": "9d1eaf5c605f8036",
+        "type": "smooth",
+        "z": "c68224905b690415",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "10",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 520,
+        "y": 520,
+        "wires": [
+            [
+                "64cfd63fcc5fe195"
+            ]
+        ]
+    },
+    {
+        "id": "669bbae6daecedb5",
+        "type": "ui_group",
+        "name": "Velocity",
+        "tab": "44d10a1a561cd9b6",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3b13d072c2dc0bdc",
+        "type": "ui_group",
+        "name": "Position",
+        "tab": "44d10a1a561cd9b6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "44d10a1a561cd9b6",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
