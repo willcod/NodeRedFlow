@@ -21,7 +21,7 @@
         "label": "units",
         "format": "{{value}}",
         "min": 0,
-        "max": "100",
+        "max": "2000000000",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -30,39 +30,9 @@
         "seg1": "",
         "seg2": "",
         "className": "",
-        "x": 740,
-        "y": 360,
+        "x": 660,
+        "y": 300,
         "wires": []
-    },
-    {
-        "id": "f331ed26d439a210",
-        "type": "inject",
-        "z": "c68224905b690415",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "0.2",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "$random()*100\t\t",
-        "payloadType": "jsonata",
-        "x": 470,
-        "y": 360,
-        "wires": [
-            [
-                "7875a6c906415a48",
-                "e210b451eda7d56b"
-            ]
-        ]
     },
     {
         "id": "c356c1f283621858",
@@ -102,8 +72,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 770,
-        "y": 440,
+        "x": 670,
+        "y": 380,
         "wires": [
             []
         ]
@@ -194,40 +164,10 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 730,
-        "y": 520,
+        "x": 670,
+        "y": 500,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "5d60d5e880a1b74c",
-        "type": "inject",
-        "z": "c68224905b690415",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "0.2",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "$random()*100\t\t",
-        "payloadType": "jsonata",
-        "x": 350,
-        "y": 580,
-        "wires": [
-            [
-                "8cc174c206a099ee",
-                "9d1eaf5c605f8036"
-            ]
         ]
     },
     {
@@ -244,7 +184,7 @@
         "label": "units",
         "format": "{{value}}",
         "min": 0,
-        "max": "100",
+        "max": "2000000000",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -253,47 +193,9 @@
         "seg1": "",
         "seg2": "",
         "className": "",
-        "x": 740,
+        "x": 660,
         "y": 580,
         "wires": []
-    },
-    {
-        "id": "e210b451eda7d56b",
-        "type": "smooth",
-        "z": "c68224905b690415",
-        "name": "",
-        "property": "payload",
-        "action": "mean",
-        "count": "10",
-        "round": "",
-        "mult": "single",
-        "reduce": false,
-        "x": 620,
-        "y": 400,
-        "wires": [
-            [
-                "c356c1f283621858"
-            ]
-        ]
-    },
-    {
-        "id": "9d1eaf5c605f8036",
-        "type": "smooth",
-        "z": "c68224905b690415",
-        "name": "",
-        "property": "payload",
-        "action": "mean",
-        "count": "10",
-        "round": "",
-        "mult": "single",
-        "reduce": false,
-        "x": 520,
-        "y": 520,
-        "wires": [
-            [
-                "64cfd63fcc5fe195"
-            ]
-        ]
     },
     {
         "id": "65eb3a480a518729",
@@ -412,6 +314,118 @@
         "x": 750,
         "y": 820,
         "wires": []
+    },
+    {
+        "id": "cb2bb5c771221ace",
+        "type": "link in",
+        "z": "c68224905b690415",
+        "name": "DDATA IN",
+        "links": [
+            "a5e5198dbad8bcd3"
+        ],
+        "x": 145,
+        "y": 440,
+        "wires": [
+            [
+                "29bf170e3cb03a6c",
+                "ca576ad9a2f2ee01",
+                "9c832e3e8008622a",
+                "ca8f8815f11c7b9d",
+                "e45466a3075f0ca4"
+            ]
+        ]
+    },
+    {
+        "id": "29bf170e3cb03a6c",
+        "type": "function",
+        "z": "c68224905b690415",
+        "name": "GetXPosition",
+        "func": "var metric = msg.payload.metrics.filter(item => item.name === \"Properties/Motion Info\"\n)[0];\n\nmsg.payload = metric.properties.values[0].longValue\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "c356c1f283621858"
+            ]
+        ]
+    },
+    {
+        "id": "ca576ad9a2f2ee01",
+        "type": "debug",
+        "z": "c68224905b690415",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 190,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9c832e3e8008622a",
+        "type": "function",
+        "z": "c68224905b690415",
+        "name": "GetYPosition",
+        "func": "var metric = msg.payload.metrics.filter(item => item.name === \"Properties/Motion Info\"\n)[0];\n\nmsg.payload = metric.properties.values[1].longValue\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 500,
+        "wires": [
+            [
+                "64cfd63fcc5fe195"
+            ]
+        ]
+    },
+    {
+        "id": "ca8f8815f11c7b9d",
+        "type": "function",
+        "z": "c68224905b690415",
+        "name": "GetXVelocity",
+        "func": "var metric = msg.payload.metrics.filter(item => item.name === \"Properties/Motion Info\"\n)[0];\n\nmsg.payload = metric.properties.values[3].longValue\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "7875a6c906415a48"
+            ]
+        ]
+    },
+    {
+        "id": "e45466a3075f0ca4",
+        "type": "function",
+        "z": "c68224905b690415",
+        "name": "GetYVelocity",
+        "func": "var metric = msg.payload.metrics.filter(item => item.name === \"Properties/Motion Info\"\n)[0];\n\nmsg.payload = metric.properties.values[4].longValue\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 580,
+        "wires": [
+            [
+                "8cc174c206a099ee"
+            ]
+        ]
     },
     {
         "id": "669bbae6daecedb5",
