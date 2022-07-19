@@ -296,6 +296,124 @@
         ]
     },
     {
+        "id": "65eb3a480a518729",
+        "type": "template",
+        "z": "c68224905b690415",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"timestamp\": 1486144502122,\n\t\"seq\": 0,\n    \"metrics\": [{\n            \"dataType\": \"Boolean\",\n            \"name\": \"Properties/Motion Info\",\n            \"timestamp\": 1486144502122,\n            \"properties\": {\n                \"key\": [\"x\", \"y\", \"z\",\n                    \"vx\", \"vy\", \"vz\",\n                    \"ax\", \"ay\", \"az\"],\n                \"value\": [{\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"Int64\",\n                        \"value\": 0\n                    }\n                ]\n            },\n            \"value\": true\n        }, {\n            \"dataType\": \"Boolean\",\n            \"name\": \"Properties/Motion State\",\n            \"timestamp\": 1486144502122,\n            \"properties\": {\n                \"key\": [\"current state\",\n                    \"prev state\",\n                    \"trigger\"],\n                \"value\": [{\n                        \"type\": \"string\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"string\",\n                        \"value\": 0\n                    }, {\n                        \"type\": \"string\",\n                        \"value\": 0\n                    }\n                ]\n            },\n            \"value\": true\n        }, {\n            \"dataType\": \"string\",\n            \"name\": \"Properties/Error Info\",\n            \"timestamp\": 1486144502122,\n            \"value\": \"None\"\n        }, {\n            \"dataType\": \"Uint32\",\n            \"name\": \"Uptime\",\n            \"timestamp\": 1486144502122,\n            \"value\": 123\n        }\n    ]\n}\n",
+        "output": "str",
+        "x": 420,
+        "y": 920,
+        "wires": [
+            [
+                "ebf5db4ac9c5847b"
+            ]
+        ]
+    },
+    {
+        "id": "f1eda5473069471e",
+        "type": "function",
+        "z": "c68224905b690415",
+        "name": "",
+        "func": "msg.measure = {}\nvar metric = msg.payload.metrics.filter(item => item.name === 'Properties/Motion Info'\n)[0]\n\nvar velocity = metric.properties.value[3].value;\n\n\nmsg.measure.Velocity = velocity\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 920,
+        "wires": [
+            [
+                "8781f3634d2720a3"
+            ]
+        ]
+    },
+    {
+        "id": "8781f3634d2720a3",
+        "type": "debug",
+        "z": "c68224905b690415",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "measure",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "82b8b0071f90ba01",
+        "type": "inject",
+        "z": "c68224905b690415",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 920,
+        "wires": [
+            [
+                "65eb3a480a518729"
+            ]
+        ]
+    },
+    {
+        "id": "ebf5db4ac9c5847b",
+        "type": "json",
+        "z": "c68224905b690415",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 570,
+        "y": 920,
+        "wires": [
+            [
+                "9d313fe9551d0ea6",
+                "f1eda5473069471e"
+            ]
+        ]
+    },
+    {
+        "id": "9d313fe9551d0ea6",
+        "type": "debug",
+        "z": "c68224905b690415",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 820,
+        "wires": []
+    },
+    {
         "id": "669bbae6daecedb5",
         "type": "ui_group",
         "name": "Velocity",
